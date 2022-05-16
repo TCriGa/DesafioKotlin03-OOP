@@ -1,6 +1,6 @@
 package ProdutosLanche
 
-import Classes.Produto
+import Classes.Utilitaria
 
-class XSalada : Produto("X-Salda", 12.00, 0){
+class XSalada : Utilitaria("X-Salda", 12.00, 0){
 }

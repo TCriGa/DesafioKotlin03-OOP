@@ -1,9 +1,9 @@
 package ProdutosLanche
 
-import Classes.Produto
+import Classes.Utilitaria
 
 
-class XBurger : Produto("X-Burguer", 10.0,0) {
+class XBurger : Utilitaria("X-Burguer", 10.0,0) {
 
 
 }

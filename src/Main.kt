@@ -1,3 +1,3 @@
 fun main() {
-    Menu().OpcaoMenu()
+    Menu().opcaoMenu()
 }

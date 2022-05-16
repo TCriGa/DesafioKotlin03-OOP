@@ -1,3 +1,5 @@
-const val MSG_Quantidade = "Informe a quantidade do produto que deseja comprar:"
-const val MSG_OPCAOINVALIDA = "Opção inválida, tente novamente"
-const val MSG_STRING_INVALIDA = "Formato inválido, para escolher o item, você deve informar o número dele"
+const val MSG_QUANTIDADE = "Informe a quantidade do produto que deseja comprar:"
+const val MSG_OPCAOINVALIDA = "Opção inválida, tente novamente."
+const val MSG_STRING_INVALIDA = "Formato inválido, para escolher o item, você deve informar o número dele."
+const val MSG_MENOR_ZERO = "Formato inválido, números devem ser positivos."
+const val MSG_ITEM_VAZIO = " :( Nada aqui, você ainda não adicionou itens ao carrinho"
