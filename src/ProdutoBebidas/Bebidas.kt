@@ -1,0 +1,4 @@
+package ProdutoBebidas
+
+interface Bebidas {
+}
