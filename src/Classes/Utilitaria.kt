@@ -1,9 +1,9 @@
 package Classes
 
+import Interface.Produtos
 import MSG_CODIGO_INVALIDO
 import MSG_ITEM_VAZIO
 import MSG_MENOR_ZERO
-import ProdutosLanche.XBurger
 
 open class Utilitaria(
     override var produto: String,
@@ -63,11 +63,6 @@ open class Utilitaria(
             codigo = readln().toIntOrNull()?:throw NumberFormatException(MSG_MENOR_ZERO)
 
         }
-    }
-
-    fun formasPagamento(mensagem: String){
-        println(mensagem)
-
     }
 
 }

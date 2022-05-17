@@ -1,6 +1,6 @@
 package ProdutosLanche
 
-import Classes.Produtos
+import Interface.Produtos
 import Classes.Utilitaria
 
 class XSalada(

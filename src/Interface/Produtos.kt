@@ -1,4 +1,4 @@
-package Classes
+package Interface
 
 interface  Produtos{
     var produto: String

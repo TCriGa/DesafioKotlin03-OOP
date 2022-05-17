@@ -1,6 +1,6 @@
 package ProdutoBebidas
 
-import Classes.Produtos
+import Interface.Produtos
 import Classes.Utilitaria
 
 class Refrigerante(

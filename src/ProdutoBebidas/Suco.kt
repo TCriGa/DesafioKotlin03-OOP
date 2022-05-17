@@ -1,6 +1,6 @@
 package ProdutoBebidas
 
-import Classes.Produtos
+import Interface.Produtos
 import Classes.Utilitaria
 
 class Suco() : Utilitaria("Suco", 6.00, 0.0, 0), Produtos {
