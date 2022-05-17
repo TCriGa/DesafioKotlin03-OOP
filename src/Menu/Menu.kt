@@ -1,4 +1,10 @@
+package Menu
+
 import Classes.Utilitaria
+import MSG_CODIGO_PRODUTO
+import MSG_OPCAOINVALIDA
+import MSG_QUANTIDADE
+import MSG_STRING_INVALIDA
 import ProdutoBebidas.Refrigerante
 import ProdutoBebidas.Suco
 import ProdutosLanche.XBurger
@@ -6,7 +12,7 @@ import ProdutosLanche.XSalada
 import kotlin.system.exitProcess
 
 class Menu() {
-val utilitaria = Utilitaria("",0.0,0.0,0)
+    val utilitaria = Utilitaria("", 0.0, 0.0, 0)
     private val xBurger = XBurger()
     private val xSalada = XSalada()
     private val suco = Suco()
@@ -32,11 +38,8 @@ val utilitaria = Utilitaria("",0.0,0.0,0)
                     1 -> opcaoLanches()
                     2 -> opcaoBebidas()
                     3 -> {
-                        println("|=========================Lanches=============================|")
+                        println("|=================Total de itens no Carricho ================|")
                         utilitaria.mostrarItens()
-                        println("|=========================Bebidas=============================|")
-
-
                         adicionairMaisItens()
                     }
 
@@ -63,7 +66,7 @@ val utilitaria = Utilitaria("",0.0,0.0,0)
         println("|--------------------- Digite a opção Desejada -------------------------------|")
         println("|---------------------  1 - X-Burguer R$ 10,00 -------------------------------|")
         println("|---------------------  2 - X-Salada  R$ 12,00 -------------------------------|")
-        println("|---------------------  3 - Voltar ao Menu -----------------------------------|")
+        println("|---------------------  3 - Voltar ao Menu.Menu -----------------------------------|")
 
 
 
@@ -71,13 +74,14 @@ val utilitaria = Utilitaria("",0.0,0.0,0)
 
             when (readln().toInt()) {
                 1 -> {
-                    utilitaria.informarQuantidade(MSG_QUANTIDADE, xBurger)
+
+                    xBurger.informarQuantidadeXBurguer(MSG_QUANTIDADE, xBurger)
                     utilitaria.gerarCarrinhoProdutos(xBurger)
                     opcaoLanches()
                 }
 
                 2 -> {
-                    utilitaria.informarQuantidade(MSG_QUANTIDADE,xSalada)
+                    xSalada.informarQuantidadeSalada(MSG_QUANTIDADE, xSalada)
                     utilitaria.gerarCarrinhoProdutos(xSalada)
                     opcaoLanches()
                 }
@@ -98,17 +102,19 @@ val utilitaria = Utilitaria("",0.0,0.0,0)
         println("|--------------------- Digite a opção Desejada  ------------------------------|")
         println("|---------------------  1- Refrigerante R$ 10,00 -----------------------------|")
         println("|---------------------  2 - Suco        R$ 12,00 -----------------------------|")
-        println("|---------------------  3 - Voltar ao Menu -----------------------------------|")
+        println("|---------------------  3 - Voltar ao Menu.Menu -----------------------------------|")
         try {
 
             when (readln().toInt()) {
                 1 -> {
-                    utilitaria.informarQuantidade(MSG_QUANTIDADE,refri)
+                    refri.informarQuantidadeRefri(MSG_QUANTIDADE, refri)
+                    utilitaria.gerarCarrinhoProdutos(refri)
                     opcaoBebidas()
                 }
 
                 2 -> {
-                    utilitaria.informarQuantidade(MSG_QUANTIDADE,suco)
+                    suco.informarQuantidadeSuco(MSG_QUANTIDADE, suco)
+                    utilitaria.gerarCarrinhoProdutos(suco)
                     opcaoBebidas()
                 }
                 3 -> opcaoMenu()
@@ -125,31 +131,34 @@ val utilitaria = Utilitaria("",0.0,0.0,0)
     private fun adicionairMaisItens() {
 
         println(" ---------------  1 - Incluir mais itens -----------------------------------|")
-        println(" ---------------  2 - Editar um item ---------------------------------------|")
-        println(" ---------------  3 - Remover itens ----------------------------------------|")
+        println(" ---------------  2 - Remover itens ----------------------------------------|")
         println(" ---------------  3 - Voltar ao menu ---------------------------------------|")
         try {
+            do {
+                when (readln().toInt()) {
+                    1 -> {
+                        opcaoMenu()
+                    }
 
-            when (readln().toInt()) {
-                1 -> {
-                    opcaoMenu()
+                    2 -> {
+                        utilitaria.removerItens(MSG_CODIGO_PRODUTO)
+                        utilitaria.mostrarItens()
+                        adicionairMaisItens()
+                    }
+
+                    3 -> opcaoMenu()
+
+                    else -> println(MSG_OPCAOINVALIDA)
                 }
+            }while (true)
 
-                2 -> {
-
-                }
-
-                3 -> {
-
-                }
-
-                else -> println(MSG_OPCAOINVALIDA)
-            }
 
         } catch (ex: NumberFormatException) {
             println(MSG_STRING_INVALIDA)
         }
     }
+
+
 }
 
 
