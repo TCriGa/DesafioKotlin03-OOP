@@ -1,57 +1,78 @@
 package Classes
 
+import MSG_CODIGO_INVALIDO
 import MSG_ITEM_VAZIO
 import MSG_MENOR_ZERO
 
-abstract class Utilitaria(
-    private var produto: String,
-    private var preco: Double,
-    private var quantidadeProduto: Int,
+open class Utilitaria(
+    override var produto: String,
+    override var preco: Double,
+    override var precoTotal: Double,
+    override var quantidadeProduto: Int
+) : Produtos {
+
+    private val listaqtdItens = mutableMapOf<Int, Produtos>()
+    private var codigo: Int = 1
 
 
-    ) {
-    private val listaqtdItens = mutableMapOf<Int, String>()
-    private var contador = hashCode()
+    private fun adicionarItens(produto: Produtos):Int {
+        listaqtdItens[codigo] = produto
+        codigo+=1
+        return codigo
+    }
 
+    fun gerarCarrinhoProdutos(produto: Produtos){
+        adicionarItens(produto)
+        validarItem()
+        mostrarItens()
 
-    fun informarQuantidade(mensagem: String): Int {
-        adicionarItens()
-        println(mensagem)
-        quantidadeProduto = readln().toInt()
-        validarItem(mensagem)
-        contador++
-        return contador
     }
 
 
-    private fun calcularPreco(): Double {
-        return preco * quantidadeProduto
-
-    }
 
 
-    private fun adicionarItens() {
-        listaqtdItens[contador] = produto
-    }
-
-    private fun validarItem(mensagem: String) {
+    fun validarItem() {
         if (quantidadeProduto < 0) {
             println(MSG_MENOR_ZERO)
             quantidadeProduto = readln().toInt()
         } else {
-            adicionarItens()
 
         }
     }
+
 
     fun mostrarItens() {
         if (listaqtdItens.isEmpty()) {
             println(MSG_ITEM_VAZIO)
 
         } else {
-            listaqtdItens.forEach { (codigo, produto) ->
-                println(" ${codigo.hashCode()} - Quantidade: $quantidadeProduto $produto R$ = ${calcularPreco()}")
+            listaqtdItens.forEach { (cont, produto) ->
+                println(" $cont - Quantidade: ${this.quantidadeProduto}  ${produto.produto} R$ = ${produto.calcularPreco(quantidadeProduto)}")
             }
+        }
+    }
+
+    fun editarItens(mensagem: String, produto: Produtos) {
+        println(mensagem)
+        var newCodigo = readln().toInt()
+
+        if (newCodigo == 0) {
+            informarQuantidade(mensagem, produto)
+        } else {
+            println(MSG_CODIGO_INVALIDO)
+            newCodigo = readln().toInt()
+        }
+    }
+
+    fun removerItens(mensagem: String) {
+        println(mensagem)
+        var newCodigo = readln().toInt()
+
+        if (newCodigo == 0) {
+            listaqtdItens.remove(codigo)
+        } else {
+            println(MSG_CODIGO_INVALIDO)
+            newCodigo = readln().toInt()
         }
     }
 }

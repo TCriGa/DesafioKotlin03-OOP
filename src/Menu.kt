@@ -1,11 +1,12 @@
+import Classes.Utilitaria
 import ProdutoBebidas.Refrigerante
 import ProdutoBebidas.Suco
 import ProdutosLanche.XBurger
 import ProdutosLanche.XSalada
 import kotlin.system.exitProcess
 
-class Menu {
-
+class Menu() {
+val utilitaria = Utilitaria("",0.0,0.0,0)
     private val xBurger = XBurger()
     private val xSalada = XSalada()
     private val suco = Suco()
@@ -28,14 +29,15 @@ class Menu {
 
             do {
                 when (readln().toInt()) {
-                    1 ->  opcaoLanches()
+                    1 -> opcaoLanches()
                     2 -> opcaoBebidas()
-                    3 ->{
-                        xBurger.mostrarItens()
-                        xSalada.mostrarItens()
-                        refri.mostrarItens()
-                        suco.mostrarItens()
-                       adicionairMaisItens()
+                    3 -> {
+                        println("|=========================Lanches=============================|")
+                        utilitaria.mostrarItens()
+                        println("|=========================Bebidas=============================|")
+
+
+                        adicionairMaisItens()
                     }
 
                     4 -> {
@@ -56,7 +58,7 @@ class Menu {
     }
 
 
-    fun opcaoLanches() {
+    private fun opcaoLanches() {
 
         println("|--------------------- Digite a opção Desejada -------------------------------|")
         println("|---------------------  1 - X-Burguer R$ 10,00 -------------------------------|")
@@ -69,13 +71,14 @@ class Menu {
 
             when (readln().toInt()) {
                 1 -> {
-
-                    xBurger.informarQuantidade(MSG_QUANTIDADE)
+                    utilitaria.informarQuantidade(MSG_QUANTIDADE, xBurger)
+                    utilitaria.gerarCarrinhoProdutos(xBurger)
                     opcaoLanches()
                 }
 
                 2 -> {
-                    xSalada.informarQuantidade(MSG_QUANTIDADE)
+                    utilitaria.informarQuantidade(MSG_QUANTIDADE,xSalada)
+                    utilitaria.gerarCarrinhoProdutos(xSalada)
                     opcaoLanches()
                 }
                 3 -> opcaoMenu()
@@ -90,7 +93,7 @@ class Menu {
         }
     }
 
-    fun opcaoBebidas() {
+    private fun opcaoBebidas() {
 
         println("|--------------------- Digite a opção Desejada  ------------------------------|")
         println("|---------------------  1- Refrigerante R$ 10,00 -----------------------------|")
@@ -100,13 +103,12 @@ class Menu {
 
             when (readln().toInt()) {
                 1 -> {
-
-                    refri.informarQuantidade(MSG_QUANTIDADE)
+                    utilitaria.informarQuantidade(MSG_QUANTIDADE,refri)
                     opcaoBebidas()
                 }
 
                 2 -> {
-                    suco.informarQuantidade(MSG_QUANTIDADE)
+                    utilitaria.informarQuantidade(MSG_QUANTIDADE,suco)
                     opcaoBebidas()
                 }
                 3 -> opcaoMenu()
@@ -120,11 +122,12 @@ class Menu {
         }
     }
 
-    fun adicionairMaisItens() {
+    private fun adicionairMaisItens() {
 
         println(" ---------------  1 - Incluir mais itens -----------------------------------|")
         println(" ---------------  2 - Editar um item ---------------------------------------|")
         println(" ---------------  3 - Remover itens ----------------------------------------|")
+        println(" ---------------  3 - Voltar ao menu ---------------------------------------|")
         try {
 
             when (readln().toInt()) {
@@ -147,10 +150,7 @@ class Menu {
             println(MSG_STRING_INVALIDA)
         }
     }
-
-
-
-    }
+}
 
 
 
