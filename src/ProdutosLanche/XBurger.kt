@@ -1,24 +1,14 @@
 package ProdutosLanche
 
 import Interface.Produtos
-import Classes.Utilitaria
-
-
 
 open class XBurger(
-) : Utilitaria("X-Burguer",10.00,0.0,0), Produtos {
+    override var produto: String = "X-Burguer",
+    override var preco: Double = 10.00,
+    override var precoTotal: Double = 0.0,
+    override var quantidadeProduto: Int = 0,
+) : Produtos {
 
-    fun informarQuantidadeXBurguer(mensagem: String, produto: Produtos) {
-        println(mensagem)
-        quantidadeProduto = validarItem()
-        calcularPreco()
-    }
-
-    private fun calcularPreco(): Double {
-        precoTotal = preco * quantidadeProduto
-        return precoTotal
-
-    }
 
 
 }

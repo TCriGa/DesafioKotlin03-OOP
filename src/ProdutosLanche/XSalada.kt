@@ -1,22 +1,15 @@
 package ProdutosLanche
 
 import Interface.Produtos
-import Classes.Utilitaria
 
 class XSalada(
-) : Utilitaria("X-Salda", 12.0, 0.0, 0), Produtos {
+    override var produto: String = "X-Salada",
+    override var preco: Double = 12.00,
+    override var precoTotal: Double = 0.0,
+    override var quantidadeProduto: Int = 0,
+
+) : Produtos {
 
 
-    fun informarQuantidadeSalada(mensagem: String, produto: Produtos) {
-        println(mensagem)
 
-        quantidadeProduto = validarItem()
-        calcularPreco()
-    }
-
-    private fun calcularPreco(): Double {
-        precoTotal = preco * quantidadeProduto
-        return precoTotal
-
-    }
 }

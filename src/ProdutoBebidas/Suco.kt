@@ -1,19 +1,12 @@
 package ProdutoBebidas
 
 import Interface.Produtos
-import Classes.Utilitaria
 
-class Suco() : Utilitaria("Suco", 6.00, 0.0, 0), Produtos {
+class Suco(
+    override var produto: String = "Suco",
+    override var preco: Double = 6.00,
+    override var precoTotal: Double = 0.0,
+    override var quantidadeProduto: Int = 0,
+) :Produtos {
 
-    fun informarQuantidadeSuco(mensagem: String, produto: Produtos) {
-        println(mensagem)
-        quantidadeProduto = validarItem()
-        calcularPreco()
-    }
-
-    private fun calcularPreco(): Double {
-        precoTotal = preco * quantidadeProduto
-        return precoTotal
-
-    }
 }
