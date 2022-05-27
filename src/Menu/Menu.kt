@@ -2,10 +2,8 @@ package Menu
 
 import Classes.Utilitaria.Utilitaria.calcularPreco
 import Classes.Utilitaria.Utilitaria.informarQuantidade
-import Classes.Utilitaria.Utilitaria.listaqtdItens
 import Classes.Utilitaria.Utilitaria.mostrarItens
 import Classes.Utilitaria.Utilitaria.removerItens
-import Interface.Produtos
 import MSG_CODIGO_PRODUTO
 import MSG_OPCAOINVALIDA
 import MSG_QUANTIDADE
@@ -16,8 +14,9 @@ import ProdutosLanche.XBurger
 import ProdutosLanche.XSalada
 import kotlin.system.exitProcess
 
-class Menu {
-    companion object menu {
+class Menu{
+
+    companion object menu  {
         private var xBurger = XBurger()
         private var xSalada = XSalada()
         private var refri = Refrigerante()
@@ -80,14 +79,16 @@ class Menu {
 
                 when (readln().toInt()) {
                     1 -> {
-
-                        informarQuantidade(MSG_QUANTIDADE, xBurger)
+                       informarQuantidade(MSG_QUANTIDADE, xBurger )
+                        xBurger.adicionarProdutos(arrayListOf())
                         calcularPreco(xBurger)
                         opcaoLanches()
                     }
 
                     2 -> {
+
                         informarQuantidade(MSG_QUANTIDADE, xSalada)
+                        xSalada.adicionarProdutos(arrayListOf())
                         calcularPreco(xSalada)
                         opcaoLanches()
                     }
@@ -113,13 +114,17 @@ class Menu {
 
                 when (readln().toInt()) {
                     1 -> {
+
                         informarQuantidade(MSG_QUANTIDADE, refri)
+                        refri.adicionarProdutos(arrayListOf())
                         calcularPreco(refri)
                         opcaoBebidas()
                     }
 
                     2 -> {
+
                         informarQuantidade(MSG_QUANTIDADE, suco)
+                        suco.adicionarProdutos(arrayListOf())
                         calcularPreco(suco)
                         opcaoBebidas()
                     }
